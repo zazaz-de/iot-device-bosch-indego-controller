@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>de.zazaz.iot.bosch.indego</groupId>
 		<artifactId>bosch-indego-controller</artifactId>
-		<version>0.6</version>
+		<version>0.7-SNAPSHOT</version>
 	</parent>
 	
 	<artifactId>bosch-indego-controller-scratchpad</artifactId>

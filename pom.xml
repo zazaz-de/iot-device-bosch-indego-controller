@@ -4,7 +4,7 @@
 
 	<groupId>de.zazaz.iot.bosch.indego</groupId>
 	<artifactId>bosch-indego-controller</artifactId>
-	<version>0.6</version>
+	<version>0.7-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -15,7 +15,7 @@
 		<connection>scm:git:https://github.com/zazaz-de/iot-device-bosch-indego-controller.git</connection>
 		<developerConnection>scm:git:git@github.com:zazaz-de/iot-device-bosch-indego-controller.git</developerConnection>
 		<url>https://github.com/zazaz-de/iot-device-bosch-indego-controller.git</url>
-		<tag>bosch-indego-controller-0.6</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<modules>

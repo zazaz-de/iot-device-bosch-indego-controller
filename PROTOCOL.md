@@ -14,11 +14,13 @@ Request:
 
 Response:
 {"contextId":"ddeeff11-2233-4455-1122-334455aabbcc","userId":"aabbccdd-ff11-2233-4455-66778899aabb","alm_sn":"123456789"}
+```
 
-Note: The authorization header is standard Base64-Encoded basic authentication header 
+_Notes:__
+* The authorization header is standard Base64-Encoded basic authentication header 
 (See https://www.ietf.org/rfc/rfc2617.txt, Chapter 2). The above example encodes 
 "max.muster@anywhere.com:supersecret)
-```
+
 
 # Getting status
 

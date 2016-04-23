@@ -1,9 +1,11 @@
+# Bosch Indego Mower REST API
+
 The following operations are known to be supported by the Bosch
 server.
 
+# Authentication
 
-1) Authentication
-
+```
 POST https://api.indego.iot.bosch-si.com/api/v1/authenticate
 Authorization: Basic bWF4Lm11c3RlckBhbnl3aGVyZS5jb206c3VwZXJzZWNyZXQ=
 
@@ -16,10 +18,11 @@ Response:
 Note: The authorization header is standard Base64-Encoded basic authentication header 
 (See https://www.ietf.org/rfc/rfc2617.txt, Chapter 2). The above example encodes 
 "max.muster@anywhere.com:supersecret)
+```
 
+# Getting status
 
-2) Getting status
-
+```
 GET https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/state
 x-im-context-id: {contextId}
 
@@ -42,21 +45,26 @@ Response:
    "error":110,
    "map_update_available":true
 }
+```
 
-Note: Replace {serial} with serial number of Indego device and {contextId} with
+__Notes:__
+* Replace {serial} with serial number of Indego device and {contextId} with
 the context id of the authentication response.
-The authentication information has to be sent as request header "x-im-context-id".
+* The authentication information has to be sent as request header "x-im-context-id".
 
-3) Controlling the mower
+# Controlling the mower
 
+```
 PUT https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/state
 x-im-context-id: {contextId}
 
 Request:
 {"state":"{command}"}
+```
 
-Note: Replace {serial} with serial number of Indego device, {contextId} with
+__Notes:__
+* Replace {serial} with serial number of Indego device, {contextId} with
 the context id of the authentication response and {command} with the device 
 command, which should be executed.
-The following commands are understood: mow, pause, returnToDock
-The authentication information has to be sent as request header "x-im-context-id".
+* The following commands are understood: mow, pause, returnToDock
+* The authentication information has to be sent as request header "x-im-context-id".

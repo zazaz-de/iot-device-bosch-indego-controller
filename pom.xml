@@ -1,0 +1,146 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>de.zazaz.iot.bosch.indego</groupId>
+	<artifactId>bosch-indego-controller</artifactId>
+	<version>0.6-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<scm>
+		<connection>scm:svn:http://svn.home.zazaz.de/repos/scratchpad/IoT/bosch-indego-controller/trunk</connection>
+		<developerConnection>scm:svn:http://svn.home.zazaz.de/repos/scratchpad/IoT/bosch-indego-controller/trunk</developerConnection>
+		<url>http://svn.home.zazaz.de/repos/scratchpad/IoT/bosch-indego-controller/trunk</url>
+	</scm>
+
+	<modules>
+		<module>bosch-indego-controller-dist</module>
+		<module>bosch-indego-controller-ifttt</module>
+		<module>bosch-indego-controller-lib</module>
+		<module>bosch-indego-controller-mqtt</module>
+		<module>bosch-indego-controller-scratchpad</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>de.zazaz.iot.bosch.indego</groupId>
+				<artifactId>bosch-indego-controller-lib</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.zazaz.iot.bosch.indego</groupId>
+				<artifactId>bosch-indego-controller-mqtt</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.zazaz.iot.bosch.indego</groupId>
+				<artifactId>bosch-indego-controller-ifttt</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>2.7.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>4.5.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-server</artifactId>
+				<version>8.1.19.v20160209</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-servlet</artifactId>
+				<version>8.1.19.v20160209</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>2.5</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-1.2-api</artifactId>
+				<version>2.5</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-cli</groupId>
+				<artifactId>commons-cli</artifactId>
+				<version>1.3.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.paho</groupId>
+				<artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+				<version>1.0.2</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.5.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>appassembler-maven-plugin</artifactId>
+					<version>1.10</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>3.0.0</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-source-plugin</artifactId> 
+				<executions> <execution> <id>attach-sources</id> <phase>verify</phase> <goals> 
+				<goal>jar-no-fork</goal> </goals> </execution> </executions> </plugin> -->
+		</plugins>
+	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>zazaz</id>
+			<name>Zazaz Release Repository</name>
+			<url>http://maven.home.zazaz.de/nexus/content/repositories/zazaz</url>
+		</repository>
+		<snapshotRepository>
+			<id>zazaz-snapshots</id>
+			<name>Zazaz Snapshot Repository</name>
+			<url>http://maven.home.zazaz.de/nexus/content/repositories/zazaz-snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+</project>

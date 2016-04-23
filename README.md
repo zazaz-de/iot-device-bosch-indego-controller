@@ -1,7 +1,7 @@
 # Controller application for Bosch Indego Connect
 
 
-BE WARNED: Never use multiple tools, which are connecting to the Indego
+__BE WARNED:__ Never use multiple tools, which are connecting to the Indego
 in parallel. The server only accepts one connection and you will experience
 some strange problems using multiple connections.
 
@@ -73,6 +73,7 @@ runtimeSessionOperationMins|the operating time (in minutes) of the current sessi
 runtimeSessionChargeMins|the charging time (in minutes) of the current session
 
 The following MQTT topics are created, which can be written by an other client:
+
 Topic|Description
 ---|---
 command|can be written with a textual command code, which is executed by the mower (one of: MOW, PAUSE, RETURN)

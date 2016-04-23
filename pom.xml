@@ -12,9 +12,10 @@
 	</properties>
 
 	<scm>
-		<connection>scm:svn:http://svn.home.zazaz.de/repos/scratchpad/IoT/bosch-indego-controller/trunk</connection>
-		<developerConnection>scm:svn:http://svn.home.zazaz.de/repos/scratchpad/IoT/bosch-indego-controller/trunk</developerConnection>
-		<url>http://svn.home.zazaz.de/repos/scratchpad/IoT/bosch-indego-controller/trunk</url>
+		<connection>scm:git:https://github.com/zazaz-de/iot-device-bosch-indego-controller.git</connection>
+		<developerConnection>scm:git:git@github.com/zazaz-de/iot-device-bosch-indego-controller.git</developerConnection>
+		<url>https://github.com/zazaz-de/iot-device-bosch-indego-controller.git</url>
+		<tag>HEAD</tag>
 	</scm>
 
 	<modules>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+    <appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>
+
+        <RollingFile name="RollingRandomAccessFile" fileName="logs/test.log" filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>
+                    %d %p %c{1.} [%t] %m%n
+                </Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20" />
+        </RollingFile>
+
+        <Async name="async">
+            <AppenderRef ref="RollingRandomAccessFile" />
+        </Async>
+    </appenders>
+    <loggers>
+        <logger name="org.apache.http.wire" level="debug" />
+        <logger name="org.apache.http.client" level="debug" />
+        <logger name="org.apache.xerces.parsers.SAXParser" level="warn" />
+        <logger name="org.hibernate" level="warn" />
+        <root level="trace">
+            <appender-ref ref="console" />
+            <appender-ref ref="async" />
+        </root>
+    </loggers>
+</configuration>

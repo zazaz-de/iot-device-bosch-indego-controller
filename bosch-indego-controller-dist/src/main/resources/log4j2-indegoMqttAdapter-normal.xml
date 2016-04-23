@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+    <appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>
+    </appenders>
+    <loggers>
+        <logger name="de.zazaz.iot.bosch.indego.mqtt" level="info" />
+        <logger name="org.apache.http.wire" level="warn" />
+        <logger name="org.apache.http.client" level="warn" />
+        <logger name="org.apache.xerces.parsers.SAXParser" level="warn" />
+        <logger name="org.hibernate" level="warn" />
+        <root level="error">
+            <appender-ref ref="console" />
+        </root>
+    </loggers>
+</configuration>

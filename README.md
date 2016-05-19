@@ -1,4 +1,4 @@
-# Controller application for Bosch Indego Connect
+# Controller application and API for Bosch Indego Connect
 
 
 __BE WARNED:__ Never use multiple tools, which are connecting to the Indego
@@ -85,6 +85,7 @@ This adapter can be used to connect the Indego to the IFTTT platform by
 using the Maker channel.
 
 __On Windows:__ bin/IndegoIftttAdapter.bat [arguments]
+
 __On Linux:__ bin/IndegoIftttAdapter [arguments]
 
 ```

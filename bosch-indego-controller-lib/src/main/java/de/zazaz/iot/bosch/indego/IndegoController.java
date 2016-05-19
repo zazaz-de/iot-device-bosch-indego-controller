@@ -138,6 +138,15 @@ public class IndegoController {
 	        return state;
     	}
     }
+    
+    public DeviceCalendar getCalendar () throws IndegoException
+    {
+        synchronized ( this ) {
+            DeviceCalendar calendar = doGetRequest("alms/" + session.getAlmSn() + "/calendar",
+                    DeviceCalendar.class);
+            return calendar;
+        }
+    }
 
     /**
      * This sends a command to the Indego device. 

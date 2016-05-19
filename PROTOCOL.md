@@ -70,3 +70,71 @@ the context id of the authentication response and {command} with the device
 command, which should be executed.
 * The following commands are understood: mow, pause, returnToDock
 * The authentication information has to be sent as request header "x-im-context-id".
+
+# Getting the calendar
+
+```
+GET https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/calendar
+x-im-context-id: {contextId}
+
+Response:
+{
+  "sel_cal" : 1,
+  "cals" : [ {
+    "cal" : 1,
+    "days" : [ {
+      "day" : 0,
+      "slots" : [ {
+        "En" : true,
+        "StHr" : 9,
+        "StMin" : 50,
+        "EnHr" : 11,
+        "EnMin" : 55
+      }, {
+        "En" : false,
+        "StHr" : 0,
+        "StMin" : 0,
+        "EnHr" : 0,
+        "EnMin" : 0
+      } ]
+    }, {
+      "day" : 1,
+      "slots" : [ {
+        "En" : true,
+        "StHr" : 9,
+        "StMin" : 50,
+        "EnHr" : 11,
+        "EnMin" : 55
+      }, {
+        "En" : false,
+        "StHr" : 0,
+        "StMin" : 0,
+        "EnHr" : 0,
+        "EnMin" : 0
+      } ]
+    },
+... 
+    {
+      "day" : 6,
+      "slots" : [ {
+        "En" : false,
+        "StHr" : 0,
+        "StMin" : 0,
+        "EnHr" : 0,
+        "EnMin" : 0
+      }, {
+        "En" : false,
+        "StHr" : 0,
+        "StMin" : 0,
+        "EnHr" : 0,
+        "EnMin" : 0
+      } ]
+    } ]
+  } ]
+}
+```
+
+__Notes:__
+* Replace {serial} with serial number of Indego device and {contextId} with
+the context id of the authentication response.
+* The authentication information has to be sent as request header "x-im-context-id".

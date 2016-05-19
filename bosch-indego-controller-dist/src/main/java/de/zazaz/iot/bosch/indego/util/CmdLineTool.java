@@ -27,6 +27,10 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+import de.zazaz.iot.bosch.indego.DeviceCalendar;
+import de.zazaz.iot.bosch.indego.DeviceCalendar.DeviceCalendarDayEntry;
+import de.zazaz.iot.bosch.indego.DeviceCalendar.DeviceCalendarDaySlot;
+import de.zazaz.iot.bosch.indego.DeviceCalendar.DeviceCalendarEntry;
 import de.zazaz.iot.bosch.indego.DeviceCommand;
 import de.zazaz.iot.bosch.indego.DeviceStateInformation;
 import de.zazaz.iot.bosch.indego.DeviceStatus;
@@ -76,6 +80,11 @@ public class CmdLineTool {
                 .desc("Queries the status of the device") //
                 .build());
         options.addOption(Option //
+                .builder() //
+                .longOpt("query-calendar") //
+                .desc("Queries the calendar of the device") //
+                .build());
+        options.addOption(Option //
                 .builder("?") //
                 .longOpt("help") //
                 .desc("Prints this help") //
@@ -104,7 +113,8 @@ public class CmdLineTool {
         String username = cmds.getOptionValue('u');
         String password = cmds.getOptionValue('p');
         String commandStr = cmds.getOptionValue('c');
-        boolean doQuery = cmds.hasOption('q');
+        boolean doQueryState = cmds.hasOption('q');
+        boolean doQueryCalendar = cmds.hasOption("query-calendar");
 
         DeviceCommand command = null;
         if ( commandStr != null ) {
@@ -128,10 +138,15 @@ public class CmdLineTool {
                 controller.sendCommand(command);
                 System.out.println("...Command sent successfully!");
             }
-            if ( doQuery ) {
+            if ( doQueryState ) {
                 System.out.println("Querying device state");
                 DeviceStateInformation state = controller.getState();
                 printState(System.out, state);
+            }
+            if ( doQueryCalendar ) {
+                System.out.println("Querying device calendar");
+                DeviceCalendar calendar = controller.getCalendar();
+                printCalendar(System.out, calendar);
             }
         }
         catch (IndegoException ex) {
@@ -160,6 +175,22 @@ public class CmdLineTool {
                 .getOperate() / 60.0));
         out_.println(String.format("  Runtime session / charge: %.2f h", state_.getRuntime().getSession()
                 .getCharge() / 60.0));
+    }
+
+    private static void printCalendar (PrintStream out_, DeviceCalendar calendar_)
+    {
+        out_.println(String.format("Device calendar:"));
+        out_.println(String.format("  Selected entry: %d", calendar_.getSelectedEntryNumber()));
+        for (DeviceCalendarEntry entry : calendar_.getEntries()) {
+            out_.println(String.format("  Entry %d:", entry.getNumber()));
+            for (DeviceCalendarDayEntry day : entry.getDays()) {
+                out_.println(String.format("    Day %d:", day.getNumber()));
+                for (DeviceCalendarDaySlot slot : day.getSlots()) {
+                    out_.println(String.format("      %02d:%02d - %02d:%02d %s", slot.getStartHour(), slot.getStartMinute(), 
+                            slot.getEndHour(), slot.getEndMinute(), slot.isEnabled() ? "ENABLED" : "DISABLED"));
+                }
+            }
+        }
     }
 
 }

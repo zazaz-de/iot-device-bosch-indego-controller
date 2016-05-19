@@ -31,3 +31,8 @@ Version 0.6
 -------------------------------
 * Minor corrections in PROTOCOL.txt
 * Moved source to Github
+
+Version 0.7
+-------------------------------
+* Added: querying the device calendar
+

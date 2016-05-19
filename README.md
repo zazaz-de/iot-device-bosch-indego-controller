@@ -19,6 +19,7 @@ Usage: de.zazaz.iot.bosch.indego.util.CmdLineTool
                        (MOW, PAUSE, RETURN)
  -p,--password <arg>   The password for authentication
  -q,--query-status     Queries the status of the device
+    --query-calendar   Queries the calendar of the device
  -u,--username <arg>   The username for authentication (usually mail
                        address)
 ```

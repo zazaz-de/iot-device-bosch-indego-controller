@@ -10,10 +10,20 @@ POST https://api.indego.iot.bosch-si.com/api/v1/authenticate
 Authorization: Basic bWF4Lm11c3RlckBhbnl3aGVyZS5jb206c3VwZXJzZWNyZXQ=
 
 Request:
-{"device":"","os_type":"Android","os_version":"4.0","dvc_manuf":"unknown","dvc_type":"unknown"}
+{
+   "device":"",
+   "os_type":"Android",
+   "os_version":"4.0",
+   "dvc_manuf":"unknown",
+   "dvc_type":"unknown"
+}
 
 Response:
-{"contextId":"ddeeff11-2233-4455-1122-334455aabbcc","userId":"aabbccdd-ff11-2233-4455-66778899aabb","alm_sn":"123456789"}
+{
+   "contextId":"ddeeff11-2233-4455-1122-334455aabbcc",
+   "userId":"aabbccdd-ff11-2233-4455-66778899aabb",
+   "alm_sn":"123456789"
+}
 ```
 
 __Notes:__
@@ -138,3 +148,75 @@ __Notes:__
 * Replace {serial} with serial number of Indego device and {contextId} with
 the context id of the authentication response.
 * The authentication information has to be sent as request header "x-im-context-id".
+
+# Setting the calendar
+
+```
+PUT https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/calendar
+x-im-context-id: {contextId}
+
+Request:
+(The same JSON structure as used as result in "Getting the calendar")
+```
+
+__Notes:__
+* Replace {serial} with serial number of Indego device and {contextId} with
+the context id of the authentication response.
+* The authentication information has to be sent as request header "x-im-context-id".
+
+# Getting the map
+
+```
+GET https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/map
+x-im-context-id: {contextId}
+
+Response:
+__TODO: To be defined__
+```
+
+__Notes:__
+* Replace {serial} with serial number of Indego device and {contextId} with
+the context id of the authentication response.
+* The authentication information has to be sent as request header "x-im-context-id".
+
+# Getting alerts
+
+```
+GET https://api.indego.iot.bosch-si.com/api/v1/alerts
+x-im-context-id: {contextId}
+
+Response:
+__TODO: To be defined__
+```
+
+__Notes:__
+* Replace {serial} with serial number of Indego device and {contextId} with
+the context id of the authentication response.
+* The authentication information has to be sent as request header "x-im-context-id".
+
+# Deleting a single alert
+
+```
+DELETE https://api.indego.iot.bosch-si.com/api/v1/alerts/{alertId}
+x-im-context-id: {contextId}
+
+Response:
+__TODO: To be defined__
+```
+
+__Notes:__
+* Replace {serial} with serial number of Indego device and {contextId} with
+the context id of the authentication response.
+* Replace {alertId} with the id of the alert to delete (see result of "Getting alerts")
+* The authentication information has to be sent as request header "x-im-context-id".
+
+# Others / To be defined
+
+GET https://api.indego.iot.bosch-si.com/api/v1/alms/{{alm_sn}}/security
+
+GET https://api.indego.iot.bosch-si.com/api/v1/alms/{{alm_sn}}/updates
+
+GET https://api.indego.iot.bosch-si.com/api/v1/alms/{{alm_sn}}     (Firmware)
+
+GET https://api.indego.iot.bosch-si.com/api/v1/alms/{{alm_sn}}/automaticUpdate
+

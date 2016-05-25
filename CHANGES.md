@@ -35,4 +35,4 @@ Version 0.6
 Version 0.7
 -------------------------------
 * Added: querying the device calendar
-
+* Added some more operations to protocol descriptions

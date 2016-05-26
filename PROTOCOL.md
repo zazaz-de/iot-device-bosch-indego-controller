@@ -171,7 +171,7 @@ GET https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/map
 x-im-context-id: {contextId}
 
 Response:
-__TODO: To be defined__
+(A image with content type "image/svg+xml; charset=utf-8")
 ```
 
 __Notes:__
@@ -186,7 +186,26 @@ GET https://api.indego.iot.bosch-si.com/api/v1/alerts
 x-im-context-id: {contextId}
 
 Response:
-__TODO: To be defined__
+[
+  {
+    "alm_sn": "1234567890",
+    "alert_id": "12345678-abef-12de-3322-11aa22ee2387",
+    "headline": "Wartungshinweis.",
+    "date": "2016-05-14T16:29:31.123Z",
+    "message": "Messer prüfen. Ihr Indego hat 100 Stunden gemäht. Prüfen Sie bitte die Messer auf einwandfreien Zustand, damit weiterhin die optimale Leistung gewährleistet ist. ",
+    "read_status": "unread",
+    "flag": "warning"
+  },
+  {
+    "alm_sn": "1234567890",
+    "alert_id": "12345678-abef-12de-3322-11aa22ee2387",
+    "headline": "Mäher benötigt Hilfe.",
+    "date": "2016-05-14T14:10:23.112Z",
+    "message": "Begrenzungsdrahtsignal über längere Zeit nicht erkannt. Ihr Indego hat für einige Zeit das Begrenzungsdrahtsignal nicht erkannt. Bitte prüfen Sie die Anschlüsse der Ladestation und des Begrenzungsdrahts.",
+    "read_status": "unread",
+    "flag": "warning"
+  }
+]
 ```
 
 __Notes:__
@@ -199,9 +218,6 @@ the context id of the authentication response.
 ```
 DELETE https://api.indego.iot.bosch-si.com/api/v1/alerts/{alertId}
 x-im-context-id: {contextId}
-
-Response:
-__TODO: To be defined__
 ```
 
 __Notes:__
@@ -210,13 +226,76 @@ the context id of the authentication response.
 * Replace {alertId} with the id of the alert to delete (see result of "Getting alerts")
 * The authentication information has to be sent as request header "x-im-context-id".
 
-# Others / To be defined
+# Getting generic device data
 
-GET https://api.indego.iot.bosch-si.com/api/v1/alms/{{alm_sn}}/security
+```
+GET https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}
+x-im-context-id: {contextId}
 
-GET https://api.indego.iot.bosch-si.com/api/v1/alms/{{alm_sn}}/updates
+Response:
+{
+  "alm_sn": "1234567890",
+  "alm_name": "Indego",
+  "service_counter": 23100,
+  "needs_service": false,
+  "bareToolnumber": "1212HA2323",
+  "alm_firmware_version": "00605.01091"
+}
+```
 
-GET https://api.indego.iot.bosch-si.com/api/v1/alms/{{alm_sn}}     (Firmware)
+__Notes:__
+* Replace {serial} with serial number of Indego device and {contextId} with
+the context id of the authentication response.
+* The authentication information has to be sent as request header "x-im-context-id".
 
-GET https://api.indego.iot.bosch-si.com/api/v1/alms/{{alm_sn}}/automaticUpdate
+# Getting security settings
 
+```
+GET https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/security
+x-im-context-id: {contextId}
+
+Response:
+{
+  "enabled": true,
+  "autolock": false
+}
+```
+
+__Notes:__
+* Replace {serial} with serial number of Indego device and {contextId} with
+the context id of the authentication response.
+* The authentication information has to be sent as request header "x-im-context-id".
+
+# Getting settings for automatic updates
+
+```
+GET https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/automaticUpdate
+x-im-context-id: {contextId}
+
+Response:
+{
+  "allow_automatic_update": true
+}
+```
+
+__Notes:__
+* Replace {serial} with serial number of Indego device and {contextId} with
+the context id of the authentication response.
+* The authentication information has to be sent as request header "x-im-context-id".
+
+# Querying for available firmware updates
+
+```
+GET https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/updates
+x-im-context-id: {contextId}
+
+Response:
+{
+  "available": false
+}
+```
+
+__Notes:__
+* Replace {serial} with serial number of Indego device and {contextId} with
+the context id of the authentication response.
+* The authentication information has to be sent as request header "x-im-context-id".

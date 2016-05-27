@@ -31,6 +31,14 @@ __Notes:__
 (See https://www.ietf.org/rfc/rfc2617.txt, Chapter 2). The above example encodes 
 "max.muster@anywhere.com:supersecret)
 
+# Deauthentication
+
+```
+DELETE https://api.indego.iot.bosch-si.com/api/v1/authenticate
+x-im-context-id: {contextId}
+
+```
+
 
 # Getting status
 

@@ -256,6 +256,17 @@ __Notes:__
 the context id of the authentication response.
 * The authentication information has to be sent as request header "x-im-context-id".
 
+# Reset blade life counter
+
+```
+PUT https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}
+x-im-context-id: {contextId}
+
+Request:
+{
+    "needs_service": false
+}
+```
 # Getting security settings
 
 ```

@@ -31,6 +31,31 @@ __Notes:__
 (See https://www.ietf.org/rfc/rfc2617.txt, Chapter 2). The above example encodes 
 "max.muster@anywhere.com:supersecret)
 
+# Deauthentication
+
+```
+DELETE https://api.indego.iot.bosch-si.com/api/v1/authenticate
+x-im-context-id: {contextId}
+
+```
+# Check Authentication
+
+```
+GET https://api.indego.iot.bosch-si.com/api/v1/authenticate/check
+Authorization: Basic bWF4Lm11c3RlckBhbnl3aGVyZS5jb206c3VwZXJzZWNyZXQ=
+x-im-context-id: {contextId}
+
+Response:
+{
+   "contextId":"ddeeff11-2233-4455-1122-334455aabbcc",
+   "userId":"aabbccdd-ff11-2233-4455-66778899aabb"
+}
+```
+
+__Notes:__
+* The authorization header is standard Base64-Encoded basic authentication header 
+(See https://www.ietf.org/rfc/rfc2617.txt, Chapter 2). The above example encodes 
+"max.muster@anywhere.com:supersecret)
 
 # Getting status
 
@@ -248,6 +273,17 @@ __Notes:__
 the context id of the authentication response.
 * The authentication information has to be sent as request header "x-im-context-id".
 
+# Reset blade life counter
+
+```
+PUT https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}
+x-im-context-id: {contextId}
+
+Request:
+{
+    "needs_service": false
+}
+```
 # Getting security settings
 
 ```

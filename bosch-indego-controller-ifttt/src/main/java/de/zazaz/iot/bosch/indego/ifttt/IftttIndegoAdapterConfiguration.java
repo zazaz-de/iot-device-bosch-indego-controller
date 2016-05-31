@@ -47,6 +47,9 @@ public class IftttIndegoAdapterConfiguration implements Cloneable {
 
     /** The name of the error cleared event (null, if no event should be sent) */
     private String iftttErrorClearedEventName;
+    
+    /** Base url of the Indego web service (if different from default) */
+    private String indegoBaseUrl;
 
     /** the username for connecting to the Indego server */
     private String indegoUsername;
@@ -71,94 +74,204 @@ public class IftttIndegoAdapterConfiguration implements Cloneable {
         }
     }
 
+    /**
+     * Gets the personal key of the maker channel to send events.
+     *
+     * @return the personal key of the maker channel to send events
+     */
     public String getIftttMakerKey ()
     {
         return iftttMakerKey;
     }
 
+    /**
+     * Sets the personal key of the maker channel to send events.
+     *
+     * @param iftttMakerKey_ the new personal key of the maker channel to send events
+     */
     public void setIftttMakerKey (String iftttMakerKey_)
     {
         iftttMakerKey = iftttMakerKey_;
     }
 
+    /**
+     * Gets the port number for receiving IFTTT events (0: disabled).
+     *
+     * @return the port number for receiving IFTTT events (0: disabled)
+     */
     public int getIftttReceiverPort ()
     {
         return iftttReceiverPort;
     }
 
+    /**
+     * Sets the port number for receiving IFTTT events (0: disabled).
+     *
+     * @param iftttReceiverPort_ the new port number for receiving IFTTT events (0: disabled)
+     */
     public void setIftttReceiverPort (int iftttReceiverPort_)
     {
         iftttReceiverPort = iftttReceiverPort_;
     }
 
+    /**
+     * Gets the an string, which is built into the receiver path (as password).
+     *
+     * @return the an string, which is built into the receiver path (as password)
+     */
     public String getIftttReceiverSecret ()
     {
         return iftttReceiverSecret;
     }
 
+    /**
+     * Sets the an string, which is built into the receiver path (as password).
+     *
+     * @param iftttReceiverSecret_ the new an string, which is built into the receiver path (as password)
+     */
     public void setIftttReceiverSecret (String iftttReceiverSecret_)
     {
         iftttReceiverSecret = iftttReceiverSecret_;
     }
 
+    /**
+     * Checks if is if set to true, the IFTTT server certificate is not checked (required for older Java versions).
+     *
+     * @return the if set to true, the IFTTT server certificate is not checked (required for older Java versions)
+     */
     public boolean isIftttIgnoreServerCertificate ()
     {
         return iftttIgnoreServerCertificate;
     }
 
+    /**
+     * Sets the if set to true, the IFTTT server certificate is not checked (required for older Java versions).
+     *
+     * @param iftttIgnoreServerCertificate_ the new if set to true, the IFTTT server certificate is not checked (required for older Java versions)
+     */
     public void setIftttIgnoreServerCertificate (boolean iftttIgnoreServerCertificate_)
     {
         iftttIgnoreServerCertificate = iftttIgnoreServerCertificate_;
     }
 
+    /**
+     * Gets the name of the offline event (null, if no event should be sent).
+     *
+     * @return the name of the offline event (null, if no event should be sent)
+     */
     public String getIftttOfflineEventName ()
     {
         return iftttOfflineEventName;
     }
 
+    /**
+     * Sets the name of the offline event (null, if no event should be sent).
+     *
+     * @param iftttOfflineEventName_ the new name of the offline event (null, if no event should be sent)
+     */
     public void setIftttOfflineEventName (String iftttOfflineEventName_)
     {
         iftttOfflineEventName = iftttOfflineEventName_;
     }
 
+    /**
+     * Gets the name of the offline event (null, if no event should be sent).
+     *
+     * @return the name of the offline event (null, if no event should be sent)
+     */
     public String getIftttOnlineEventName ()
     {
         return iftttOnlineEventName;
     }
 
+    /**
+     * Sets the name of the offline event (null, if no event should be sent).
+     *
+     * @param iftttOnlineEventName_ the new name of the offline event (null, if no event should be sent)
+     */
     public void setIftttOnlineEventName (String iftttOnlineEventName_)
     {
         iftttOnlineEventName = iftttOnlineEventName_;
     }
 
+    /**
+     * Gets the name of the state change event (null, if no event should be sent).
+     *
+     * @return the name of the state change event (null, if no event should be sent)
+     */
     public String getIftttStateChangeEventName ()
     {
         return iftttStateChangeEventName;
     }
 
+    /**
+     * Sets the name of the state change event (null, if no event should be sent).
+     *
+     * @param iftttStateChangeEventName_ the new name of the state change event (null, if no event should be sent)
+     */
     public void setIftttStateChangeEventName (String iftttStateChangeEventName_)
     {
         iftttStateChangeEventName = iftttStateChangeEventName_;
     }
 
+    /**
+     * Gets the name of the error event (null, if no event should be sent).
+     *
+     * @return the name of the error event (null, if no event should be sent)
+     */
     public String getIftttErrorEventName ()
     {
         return iftttErrorEventName;
     }
 
+    /**
+     * Sets the name of the error event (null, if no event should be sent).
+     *
+     * @param iftttErrorEventName_ the new name of the error event (null, if no event should be sent)
+     */
     public void setIftttErrorEventName (String iftttErrorEventName_)
     {
         iftttErrorEventName = iftttErrorEventName_;
     }
 
+    /**
+     * Gets the name of the error cleared event (null, if no event should be sent).
+     *
+     * @return the name of the error cleared event (null, if no event should be sent)
+     */
     public String getIftttErrorClearedEventName ()
     {
         return iftttErrorClearedEventName;
     }
 
+    /**
+     * Sets the name of the error cleared event (null, if no event should be sent).
+     *
+     * @param iftttErrorClearedEventName_ the new name of the error cleared event (null, if no event should be sent)
+     */
     public void setIftttErrorClearedEventName (String iftttErrorClearedEventName_)
     {
         iftttErrorClearedEventName = iftttErrorClearedEventName_;
+    }
+    
+    /**
+     * Gets the base url of the Indego web service (if different from default)
+     *
+     * @return the base url of the Indego web service (if different from default)
+     */
+    public String getIndegoBaseUrl ()
+    {
+        return indegoBaseUrl;
+    }
+
+    /**
+     * Sets the base url of the Indego web service (if different from default)
+     *
+     * @param indegoBaseUrl the base url of the Indego web service (if different from default) 
+     */
+    public void setIndegoBaseUrl (String indegoBaseUrl)
+    {
+        this.indegoBaseUrl = indegoBaseUrl;
     }
 
     /**

@@ -55,6 +55,12 @@ public class CmdLineTool {
         }
 
         options.addOption(Option //
+                .builder() //
+                .longOpt("base-url") //
+                .desc("Sets the base URL of the web service") //
+                .hasArg() //
+                .build());
+        options.addOption(Option //
                 .builder("u") //
                 .longOpt("username") //
                 .desc("The username for authentication (usually mail address)") //
@@ -110,6 +116,7 @@ public class CmdLineTool {
             return;
         }
 
+        String baseUrl = cmds.getOptionValue("base-url");
         String username = cmds.getOptionValue('u');
         String password = cmds.getOptionValue('p');
         String commandStr = cmds.getOptionValue('c');
@@ -127,7 +134,7 @@ public class CmdLineTool {
             }
         }
 
-        IndegoController controller = new IndegoController(username, password);
+        IndegoController controller = new IndegoController(baseUrl, username, password);
         try {
             System.out.println("Connecting to device");
             controller.connect();

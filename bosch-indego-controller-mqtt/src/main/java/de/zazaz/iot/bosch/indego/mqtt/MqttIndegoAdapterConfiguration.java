@@ -38,6 +38,9 @@ public class MqttIndegoAdapterConfiguration implements Cloneable {
 
     /** the quality of service to use for communicating to the MQTT broker (see MQTT spec) */
     private int mqttQos = 1;
+    
+    /** Base url of the Indego web service (if different from default) */
+    private String indegoBaseUrl;
 
     /** the username for connecting to the Indego server */
     private String indegoUsername;
@@ -184,6 +187,26 @@ public class MqttIndegoAdapterConfiguration implements Cloneable {
     public void setMqttQos (int mqttQos)
     {
         this.mqttQos = mqttQos;
+    }
+    
+    /**
+     * Gets the base url of the Indego web service (if different from default)
+     *
+     * @return the base url of the Indego web service (if different from default)
+     */
+    public String getIndegoBaseUrl ()
+    {
+        return indegoBaseUrl;
+    }
+
+    /**
+     * Sets the base url of the Indego web service (if different from default)
+     *
+     * @param indegoBaseUrl the base url of the Indego web service (if different from default) 
+     */
+    public void setIndegoBaseUrl (String indegoBaseUrl)
+    {
+        this.indegoBaseUrl = indegoBaseUrl;
     }
 
     /**

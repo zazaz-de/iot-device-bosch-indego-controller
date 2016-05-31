@@ -113,6 +113,7 @@ public class IndegoMqttAdapter {
         }
 
         MqttIndegoAdapterConfiguration config = new MqttIndegoAdapterConfiguration();
+        config.setIndegoBaseUrl(properties.getProperty("indego.mqtt.device.base-url"));
         config.setIndegoUsername(properties.getProperty("indego.mqtt.device.username"));
         config.setIndegoPassword(properties.getProperty("indego.mqtt.device.password"));
         config.setMqttBroker(properties.getProperty("indego.mqtt.broker.connection"));

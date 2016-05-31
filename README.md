@@ -15,6 +15,7 @@ __On Linux:__ bin/IndegoController [arguments]
 ```
 Usage: de.zazaz.iot.bosch.indego.util.CmdLineTool
  -?,--help             Prints this help
+    --base-url <arg>   Optionally specifies the URL of the web service
  -c,--command <arg>    The command, which should be sent to the device
                        (MOW, PAUSE, RETURN)
  -p,--password <arg>   The password for authentication

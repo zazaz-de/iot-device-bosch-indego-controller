@@ -500,7 +500,8 @@ public class MqttIndegoAdapter {
     {
         try {
             LOG.info("Connecting to Indego");
-            IndegoController result = new IndegoController(configuration.getIndegoUsername(), configuration.getIndegoPassword());
+            IndegoController result = new IndegoController(configuration.getIndegoBaseUrl(),
+                    configuration.getIndegoUsername(), configuration.getIndegoPassword());
             result.connect();
             LOG.info("Connection to Indego established");
             return result;

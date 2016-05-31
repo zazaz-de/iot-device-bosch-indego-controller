@@ -38,11 +38,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class IndegoController {
 
-	/** the url which provices the service for controlling the device */ 
-    public static final String BASE_URL = "https://api.indego.iot.bosch-si.com/api/v1/";
+	/** the default url which provices the service for controlling the device */ 
+    public static final String BASE_URL_DEFAULT = "https://api.indego.iot.bosch-si.com/api/v1/";
     
     /** for limiting the amount of status query requests on the server a minimum interval is specified */
     public static final long MIN_STATE_QUERY_INTERVAL_MS = 60 * 1000;
+    
+    /** the url which provices the service for controlling the device */ 
+    private final String baseUrl;
 
     /** for mapping between JSON strings and POJOs */
     private final ObjectMapper mapper = new ObjectMapper();
@@ -61,6 +64,20 @@ public class IndegoController {
     
     /** this stores the result of the last device status query */
     private DeviceStateInformation deviceStateCache;
+    
+    /**
+     * This initializes the controller instance, but does not connect yet.
+     * 
+     * @param baseUrl_ the url which provices the service for controlling the device;
+     *      if null, the default base url is used
+     * @param username_ the username for authenticating
+     * @param password_ the password for authenticating
+     */
+    public IndegoController (String baseUrl_, String username_, String password_)
+    {
+        baseUrl = baseUrl_ == null ? BASE_URL_DEFAULT : normalizeBaseUrl(baseUrl_);
+        authentication = Base64.encodeBase64String((username_ + ":" + password_).getBytes());
+    }
 
     /**
      * This initializes the controller instance, but does not connect yet.
@@ -70,7 +87,17 @@ public class IndegoController {
      */
     public IndegoController (String username_, String password_)
     {
+        baseUrl = BASE_URL_DEFAULT;
         authentication = Base64.encodeBase64String((username_ + ":" + password_).getBytes());
+    }
+
+    /**
+     * @param baseUrl_ the user specified base url
+     * @return the reformatted and normalized base url
+     */
+    private String normalizeBaseUrl (String baseUrl_)
+    {
+        return baseUrl_.endsWith("/") ? baseUrl_ : baseUrl_ + "/";
     }
 
     /**
@@ -190,7 +217,7 @@ public class IndegoController {
     private AuthenticationResponse doAuthenticate () throws IndegoAuthenticationException, IndegoException
     {
         try {
-            HttpPost httpPost = new HttpPost(BASE_URL + "authenticate");
+            HttpPost httpPost = new HttpPost(baseUrl + "authenticate");
             httpPost.addHeader("Authorization", "Basic " + authentication);
 
             AuthenticationRequest authRequest = new AuthenticationRequest();
@@ -236,7 +263,7 @@ public class IndegoController {
     private <T> T doGetRequest (String urlSuffix, Class<? extends T> returnType) throws IndegoException
     {
         try {
-            HttpGet httpRequest = new HttpGet(BASE_URL + urlSuffix);
+            HttpGet httpRequest = new HttpGet(baseUrl + urlSuffix);
             httpRequest.setHeader("x-im-context-id", session.getContextId());
             CloseableHttpResponse response = httpClient.execute(httpRequest);
             if ( response.getStatusLine().getStatusCode() != HttpStatus.SC_OK ) {
@@ -271,7 +298,7 @@ public class IndegoController {
             throws IndegoException
     {
         try {
-            HttpPut httpRequest = new HttpPut(BASE_URL + urlSuffix);
+            HttpPut httpRequest = new HttpPut(baseUrl + urlSuffix);
             httpRequest.setHeader("x-im-context-id", session.getContextId());
             String json = mapper.writeValueAsString(request);
             httpRequest.setEntity(new StringEntity(json, ContentType.APPLICATION_JSON));

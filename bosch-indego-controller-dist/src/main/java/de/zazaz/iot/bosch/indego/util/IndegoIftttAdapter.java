@@ -122,6 +122,7 @@ public class IndegoIftttAdapter {
         config.setIftttErrorEventName(properties.getProperty("indego.ifttt.maker.eventname-error"));
         config.setIftttErrorClearedEventName(properties.getProperty("indego.ifttt.maker.eventname-error-cleared"));
         config.setIftttStateChangeEventName(properties.getProperty("indego.ifttt.maker.eventname-state-change"));
+        config.setIndegoBaseUrl(properties.getProperty("indego.ifttt.device.base-url"));
         config.setIndegoUsername(properties.getProperty("indego.ifttt.device.username"));
         config.setIndegoPassword(properties.getProperty("indego.ifttt.device.password"));
         config.setPollingIntervalMs(Integer.parseInt(properties.getProperty("indego.ifttt.polling-interval-ms")));

@@ -24,6 +24,7 @@
 		<module>bosch-indego-controller-lib</module>
 		<module>bosch-indego-controller-mqtt</module>
 		<module>bosch-indego-controller-scratchpad</module>
+		<module>bosch-indego-controller-srvmock</module>
 	</modules>
 
 	<dependencyManagement>

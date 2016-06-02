@@ -37,3 +37,4 @@ Version 0.7
 * Added: querying the device calendar
 * Added some more operations to protocol descriptions
 * Added: The base url of web service can be set
+* Added: First version of mock service, which simulates the Bosch webservice for testing

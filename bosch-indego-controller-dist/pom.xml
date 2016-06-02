@@ -9,6 +9,26 @@
 
 	<artifactId>bosch-indego-controller-dist</artifactId>
 	<packaging>jar</packaging>
+	
+	<name>${project.groupId}:${project.artifactId}</name>
+	<description>An API and adapters for the Bosch Indego Mower (Distribution project).</description>
+	<url>https://github.com/zazaz-de/iot-device-bosch-indego-controller</url>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Markus Heimhuber</name>
+			<email>markus.heimhuber@zazaz.de</email>
+			<organization>ZAZAZ</organization>
+			<organizationUrl>https://github.com/zazaz-de</organizationUrl>
+		</developer>
+	</developers>
 
 	<dependencies>
 		<dependency>

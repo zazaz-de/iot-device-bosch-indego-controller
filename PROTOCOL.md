@@ -261,7 +261,7 @@ Response:
 {
   "alm_sn": "1234567890",
   "alm_name": "Indego",
-  "alm_mode" : "smart", // developing ;-)
+  "alm_mode" : "smart", 
   "service_counter": 23100,
   "needs_service": false,
   "bareToolnumber": "1212HA2323",
@@ -278,7 +278,7 @@ the context id of the authentication response.
 
 ```
 PUT https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}
-Authorization: Basic bWF4Lm11c3RlckBhbnl3aGVyZS5jb206c3VwZXJzZWNyZXQ=
+
 x-im-context-id: {contextId}
 
 Request:
@@ -286,10 +286,7 @@ Request:
     "needs_service": false
 }
 ```
-__Notes:__
-* The authorization header is standard Base64-Encoded basic authentication header 
-(See https://www.ietf.org/rfc/rfc2617.txt, Chapter 2). The above example encodes 
-"max.muster@anywhere.com:supersecret)
+
 
 # Getting security settings
 

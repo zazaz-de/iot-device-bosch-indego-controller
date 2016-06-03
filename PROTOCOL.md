@@ -149,6 +149,7 @@ Request:
 # Get excluded mowing times for smart mode
 ```
 GET https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/predictive/calendar
+x-im-context-id: {contextId}
 
 Response:
 {
@@ -222,6 +223,7 @@ Response:
 # Set excluded mowing times for smart mode
 ```
 PUT https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/predictive/calendar
+x-im-context-id: {contextId}
 
 Request:
 {
@@ -295,6 +297,7 @@ Request:
 # Get next predicted mowing time (smart mode)
 ```
 GET https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/predictive/nextcutting?last=YYYY-MM-DDTHH:MM:SS%2BHH:MM
+x-im-context-id: {contextId}
 
 Parameters
 last: "YYYY-MM-DDTHH:MM:SS%2B02:00" //String(Date + "T" + Time + "+" Timezone)
@@ -308,6 +311,7 @@ Response:
 # Set user adjustment for mowing frequency (smart mode)
 ```
 PUT https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/predictive/useradjustment
+x-im-context-id: {contextId}
 
 Request:
 {
@@ -321,6 +325,7 @@ user_adjustment: -100 <= Integer <= 100; optimal = 0
 # Get user adjustment for mowing frequency (smart mode)
 ```
 GET https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/predictive/useradjustment
+x-im-context-id: {contextId}
 
 Response:
 {

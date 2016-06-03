@@ -89,6 +89,248 @@ __Notes:__
 the context id of the authentication response.
 * The authentication information has to be sent as request header "x-im-context-id".
 
+# Set garden location (smart mode)
+
+```
+PUT https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/predictive/location
+x-im-context-id: {contextId}
+
+Request:
+
+{
+    "latitude": "52.5243700", 
+    "longitude": "13.4105300", 
+    "timezone": "Europe/Berlin"
+}
+
+```
+# Get garden location (smart mode)
+
+```
+GET https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/predictive/location
+x-im-context-id: {contextId}
+
+Request:
+
+{
+    "latitude": "52.5243700", 
+    "longitude": "13.4105300", 
+    "timezone": "Europe/Berlin"
+}
+
+```
+
+# Enable predictive mowing (smart mode)
+
+```
+PUT https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/predictive
+x-im-context-id: {contextId}
+
+Request:
+
+{
+    "enabled": true
+}
+
+```
+# Disable predictive mowing (smart mode)
+
+```
+PUT https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/predictive
+x-im-context-id: {contextId}
+
+Request:
+
+{
+    "enabled": false
+}
+
+```
+# Get excluded mowing times for smart mode
+```
+GET https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/predictive/calendar
+
+Response:
+{
+  "sel_cal" : 1,
+"cals": [
+        {
+            "cal": 1, 
+            "days": [
+                {
+                    "day": 0, 
+                    "slots": [
+                        {
+                            "En": true, 
+                            "EnHr": 23, 
+                            "EnMin": 59, 
+                            "StHr": 22, 
+                            "StMin": 0
+                        }, 
+                        {
+                            "En": true, 
+                            "EnHr": 8, 
+                            "EnMin": 0, 
+                            "StHr": 0, 
+                            "StMin": 0
+                        }
+                    ]
+                }, 
+                {
+                    "day": 1, 
+                    "slots": [
+                        {
+                            "En": true, 
+                            "EnHr": 23, 
+                            "EnMin": 59, 
+                            "StHr": 22, 
+                            "StMin": 0
+                        }, 
+                        {
+                            "En": true, 
+                            "EnHr": 8, 
+                            "EnMin": 0, 
+                            "StHr": 0, 
+                            "StMin": 0
+                        }
+                    ]
+                }, 
+... 
+                {
+                    "day": 6, 
+                    "slots": [
+                        {
+                            "En": true, 
+                            "EnHr": 23, 
+                            "EnMin": 59, 
+                            "StHr": 22, 
+                            "StMin": 0
+                        }, 
+                        {
+                            "En": true, 
+                            "EnHr": 8, 
+                            "EnMin": 0, 
+                            "StHr": 0, 
+                            "StMin": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ], 
+```
+# Set excluded mowing times for smart mode
+```
+PUT https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/predictive/calendar
+
+Request:
+{
+  "sel_cal" : 1,
+"cals": [
+        {
+            "cal": 1, 
+            "days": [
+                {
+                    "day": 0, 
+                    "slots": [
+                        {
+                            "En": true, 
+                            "EnHr": 23, 
+                            "EnMin": 59, 
+                            "StHr": 22, 
+                            "StMin": 0
+                        }, 
+                        {
+                            "En": true, 
+                            "EnHr": 8, 
+                            "EnMin": 0, 
+                            "StHr": 0, 
+                            "StMin": 0
+                        }
+                    ]
+                }, 
+                {
+                    "day": 1, 
+                    "slots": [
+                        {
+                            "En": true, 
+                            "EnHr": 23, 
+                            "EnMin": 59, 
+                            "StHr": 22, 
+                            "StMin": 0
+                        }, 
+                        {
+                            "En": true, 
+                            "EnHr": 8, 
+                            "EnMin": 0, 
+                            "StHr": 0, 
+                            "StMin": 0
+                        }
+                    ]
+                }, 
+... 
+                {
+                    "day": 6, 
+                    "slots": [
+                        {
+                            "En": true, 
+                            "EnHr": 23, 
+                            "EnMin": 59, 
+                            "StHr": 22, 
+                            "StMin": 0
+                        }, 
+                        {
+                            "En": true, 
+                            "EnHr": 8, 
+                            "EnMin": 0, 
+                            "StHr": 0, 
+                            "StMin": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ], 
+```
+# Get next predicted mowing time (smart mode)
+```
+GET https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/predictive/nextcutting?last=YYYY-MM-DDTHH:MM:SS%2BHH:MM
+
+Parameters
+last: "YYYY-MM-DDTHH:MM:SS%2B02:00" //String(Date + "T" + Time + "+" Timezone)
+
+Response:
+{
+    "mow_next": "YYYY-MM-DDTHH:MM:SS+HH:SS" 
+}
+
+```
+# Set user adjustment for mowing frequency (smart mode)
+```
+PUT https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/predictive/useradjustment
+
+Request:
+{
+    "user_adjustment": 0
+}
+
+Parameters:
+user_adjustment: -100 <= Integer <= 100; optimal = 0
+
+```
+# Get user adjustment for mowing frequency (smart mode)
+```
+GET https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/predictive/useradjustment
+
+Response:
+{
+    "user_adjustment": 0 // min = -100, max = 100, optimal = 0
+}
+
+Parameters:
+user_adjustment: -100 <= Integer <= 100; optimal = 0
+
+```
 # Controlling the mower
 
 ```

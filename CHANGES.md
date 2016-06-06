@@ -32,9 +32,11 @@ Version 0.6
 * Minor corrections in PROTOCOL.txt
 * Moved source to Github
 
+
 Version 0.7
 -------------------------------
 * Added: querying the device calendar
-* Added some more operations to protocol descriptions
+* Added: A lot more operations to protocol descriptions
 * Added: The base url of web service can be set
 * Added: First version of mock service, which simulates the Bosch webservice for testing
+* Added: Preparations for releasing artifacts to Sonatype OSSRH and Maven Central repository

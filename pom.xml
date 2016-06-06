@@ -162,16 +162,14 @@
 	</build>
 
 	<distributionManagement>
-		<repository>
-			<id>zazaz</id>
-			<name>Zazaz Release Repository</name>
-			<url>http://maven.home.zazaz.de/nexus/content/repositories/zazaz</url>
-		</repository>
 		<snapshotRepository>
-			<id>zazaz-snapshots</id>
-			<name>Zazaz Snapshot Repository</name>
-			<url>http://maven.home.zazaz.de/nexus/content/repositories/zazaz-snapshots</url>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
 	</distributionManagement>
 
 </project>

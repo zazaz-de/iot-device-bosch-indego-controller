@@ -261,6 +261,7 @@ Response:
 {
   "alm_sn": "1234567890",
   "alm_name": "Indego",
+  "alm_mode" : "smart", 
   "service_counter": 23100,
   "needs_service": false,
   "bareToolnumber": "1212HA2323",
@@ -277,6 +278,7 @@ the context id of the authentication response.
 
 ```
 PUT https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}
+
 x-im-context-id: {contextId}
 
 Request:
@@ -284,6 +286,8 @@ Request:
     "needs_service": false
 }
 ```
+
+
 # Getting security settings
 
 ```

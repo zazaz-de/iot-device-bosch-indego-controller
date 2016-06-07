@@ -121,6 +121,16 @@ For sending commands the Indego create a following recipe:
 
 ## Java API usage 
 
+If you are using maven, add the following dependency to your pom.xml:
+```xml
+<dependency>
+  <groupId>de.zazaz.iot.bosch.indego</groupId>
+  <artifactId>bosch-indego-controller-lib</artifactId>
+  <version>0.7</version> <!-- or latest version -->
+</dependency>
+```
+
+The following snippet gives you an example how to control the mower. For details please see the JavaDoc.
 ```java
 // Create controller instance
 IndegoController controller = new IndegoController(username, password);

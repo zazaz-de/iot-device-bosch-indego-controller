@@ -17,6 +17,7 @@
 package de.zazaz.iot.bosch.indego;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
@@ -24,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  * POJO for parsing JSON response after authenticating to server
  */
 @JsonPropertyOrder({ "contextId", "userId", "alm_sn" })
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class AuthenticationResponse {
 
     private String contextId;

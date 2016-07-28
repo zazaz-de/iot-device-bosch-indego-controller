@@ -172,6 +172,7 @@ public class CmdLineTool {
         out_.println(String.format("  Error: %d", state_.getError()));
         out_.println(String.format("  Completed: %d %%", state_.getMowed()));
         out_.println(String.format("  Mowed timestamp: %s", new Date(state_.getMowedTimestamp())));
+        out_.println(String.format("  Mow mode: %d", state_.getMowMode()));
         out_.println(String.format("  Svg map timestamp: %s", new Date(state_.getMapSvgCacheTimestamp())));
         out_.println(String.format("  Map update available: %s", state_.isMapUpdateAvailable() ? "yes" : "no"));
         out_.println(String.format("  Runtime total / operate: %.2f h", state_.getRuntime().getTotal()

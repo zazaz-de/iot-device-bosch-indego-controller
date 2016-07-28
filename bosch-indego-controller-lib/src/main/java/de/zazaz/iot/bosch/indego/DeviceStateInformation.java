@@ -17,6 +17,7 @@
 package de.zazaz.iot.bosch.indego;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
@@ -26,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  * runtime, etc.
  */
 @JsonPropertyOrder({ "state", "mowed", "mowed_ts", "mapsvgcache_ts", "runtime", "error", "map_update_available" })
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DeviceStateInformation {
 
     @JsonPropertyOrder({ "total", "session" })
@@ -101,6 +103,8 @@ public class DeviceStateInformation {
     private int mowed;
 
     private long mowedTimestamp;
+    
+    private long mowMode;
 
     private long mapSvgCacheTimestamp;
 
@@ -154,6 +158,18 @@ public class DeviceStateInformation {
     public void setMowedTimestamp (long mowed_ts_)
     {
         mowedTimestamp = mowed_ts_;
+    }
+
+    @JsonGetter("mowmode")
+    public long getMowMode ()
+    {
+        return mowMode;
+    }
+
+    @JsonSetter("mowmode")
+    public void setMowMode (long mowMode)
+    {
+        this.mowMode = mowMode;
     }
 
     @JsonGetter("mapsvgcache_ts")

@@ -62,6 +62,8 @@ public class MqttIndegoAdapter {
     public static final String MQTT_TOPIC_MAP_UPDATE_AVAILABLE = "mapUpdateAvailable";
 
     public static final String MQTT_TOPIC_MOWED_TS = "mowedTs";
+    
+    public static final String MQTT_TOPIC_MOW_MODE= "mowMode";
 
     public static final String MQTT_TOPIC_RUNTIME_TOTAL_OPERATE_MINS = "runtimeTotalOperationMins";
 
@@ -459,6 +461,7 @@ public class MqttIndegoAdapter {
         publish(mqttClient, MQTT_TOPIC_MAP_SVG_CACHE_TS, state.getMapSvgCacheTimestamp(), RETAINMENT);
         publish(mqttClient, MQTT_TOPIC_MAP_UPDATE_AVAILABLE, state.isMapUpdateAvailable(), RETAINMENT);
         publish(mqttClient, MQTT_TOPIC_MOWED_TS, state.getMowedTimestamp(), RETAINMENT);
+        publish(mqttClient, MQTT_TOPIC_MOW_MODE, state.getMowMode(), RETAINMENT);
         publish(mqttClient, MQTT_TOPIC_RUNTIME_TOTAL_OPERATE_MINS, state.getRuntime().getTotal().getOperate(), RETAINMENT);
         publish(mqttClient, MQTT_TOPIC_RUNTIME_TOTAL_CHARGE_MINS, state.getRuntime().getTotal().getCharge(), RETAINMENT);
         publish(mqttClient, MQTT_TOPIC_RUNTIME_SESSION_OPERATE_MINS, state.getRuntime().getSession().getOperate(), RETAINMENT);

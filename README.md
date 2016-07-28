@@ -69,6 +69,7 @@ mowedPercent|how many percent of the garden is mowed currently
 mapSvgCacheTs|a numeric timestamp of the latest garden image
 mapUpdateAvailable|1, a new map can be downloaded; 0, otherwise
 mowedTs|a numeric timestamp of the last mowing operation
+mowMode|(unknown purpose)
 runtimeTotalOperationMins|the total operating time (in minutes)
 runtimeTotalChargeMins|the total charging time (in minutes)
 runtimeSessionOperationMins|the operating time (in minutes) of the current session
@@ -126,7 +127,7 @@ If you are using maven, add the following dependency to your pom.xml:
 <dependency>
   <groupId>de.zazaz.iot.bosch.indego</groupId>
   <artifactId>bosch-indego-controller-lib</artifactId>
-  <version>0.7</version> <!-- or latest version -->
+  <version>0.8</version> <!-- or latest version -->
 </dependency>
 ```
 

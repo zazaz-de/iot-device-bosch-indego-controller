@@ -1,13 +1,16 @@
 package de.zazaz.iot.bosch.indego;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 @JsonPropertyOrder({ "sel_cal", "cals" })
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DeviceCalendar {
     
     @JsonPropertyOrder({ "En", "StHr", "StMin", "EnHr", "EnMin" })
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class DeviceCalendarDaySlot {
         
         private boolean enabled;
@@ -83,6 +86,7 @@ public class DeviceCalendar {
     }
     
     @JsonPropertyOrder({ "day", "slots" })
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class DeviceCalendarDayEntry {
         
         private int number;
@@ -116,6 +120,7 @@ public class DeviceCalendar {
     }
     
     @JsonPropertyOrder({ "cal", "days" })
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class DeviceCalendarEntry {
         
         private int number;

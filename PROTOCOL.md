@@ -68,6 +68,7 @@ Response:
    "state":123,
    "mowed":50,
    "mowed_ts":1460641111111,
+   "mowmode":0,
    "mapsvgcache_ts":1459938111111,
    "runtime":{  
       "total":{  

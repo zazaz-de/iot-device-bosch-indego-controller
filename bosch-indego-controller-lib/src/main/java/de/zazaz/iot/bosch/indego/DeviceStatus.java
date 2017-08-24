@@ -66,12 +66,13 @@ public class DeviceStatus {
         addStatus(771, "Returning to dock - Battery low", DeviceCommand.RETURN);
         addStatus(772, "Returning to dock - Calendar timeslot ended", DeviceCommand.RETURN);
         addStatus(773, "Returning to dock - Battery temp range", DeviceCommand.RETURN);
-        addStatus(774, "Returning to dock", DeviceCommand.RETURN);
+        addStatus(774, "Returning to dock - requested by user/app", DeviceCommand.RETURN);
         addStatus(775, "Returning to dock - Lawn complete", DeviceCommand.RETURN);
         addStatus(776, "Returning to dock - Relocalising", DeviceCommand.RETURN);
         addStatus(1025, "Diagnostic mode", null);
         addStatus(1026, "End of live", null);
         addStatus(1281, "Software update", null);
+        addStatus(1537, "Stuck on lawn, help needed", null);
     }
 
     /**

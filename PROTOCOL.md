@@ -89,6 +89,8 @@ __Notes:__
 * Replace {serial} with serial number of Indego device and {contextId} with
 the context id of the authentication response.
 * The authentication information has to be sent as request header "x-im-context-id".
+* "mowed_ts" is no longer part of the response (Indego 350 connect 2017). Instead, query for /predictive/lastcutting
+* "error" is no longer part of the response (Indego 350 connect 2017)
 
 # Set garden location (smart mode)
 
@@ -309,6 +311,17 @@ Response:
 }
 
 ```
+# Get last mowing time
+```
+GET https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/predictive/lastcutting
+x-im-context-id: {contextId}
+
+Response:
+{
+    "last_mowed": "YYYY-MM-DDTHH:MM:SS+HH:SS" 
+}
+
+```
 # Set user adjustment for mowing frequency (smart mode)
 ```
 PUT https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/predictive/useradjustment
@@ -335,6 +348,12 @@ Response:
 
 Parameters:
 user_adjustment: -100 <= Integer <= 100; optimal = 0
+
+```
+# Get weather forecast
+```
+GET https://api.indego.iot.bosch-si.com/api/v1/alms/{serial}/predictive/weather
+x-im-context-id: {contextId}
 
 ```
 # Controlling the mower

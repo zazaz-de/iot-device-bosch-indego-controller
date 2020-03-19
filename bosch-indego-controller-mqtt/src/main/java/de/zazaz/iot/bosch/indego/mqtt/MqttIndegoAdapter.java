@@ -48,7 +48,7 @@ public class MqttIndegoAdapter {
     public static final String MQTT_TOPIC_ONLINE = "online";
 
     public static final String MQTT_TOPIC_STATE_CODE = "stateCode";
-    
+
     public static final String MQTT_TOPIC_ERROR_CODE = "errorCode";
 
     public static final String MQTT_TOPIC_STATE_MESSAGE = "stateMessage";
@@ -62,7 +62,7 @@ public class MqttIndegoAdapter {
     public static final String MQTT_TOPIC_MAP_UPDATE_AVAILABLE = "mapUpdateAvailable";
 
     public static final String MQTT_TOPIC_MOWED_TS = "mowedTs";
-    
+
     public static final String MQTT_TOPIC_MOW_MODE= "mowMode";
 
     public static final String MQTT_TOPIC_RUNTIME_TOTAL_OPERATE_MINS = "runtimeTotalOperationMins";
@@ -143,7 +143,7 @@ public class MqttIndegoAdapter {
 
     /**
      * Initializes the MqttAdapter.
-     * 
+     *
      * @param configuration_ the configuration to use
      */
     public MqttIndegoAdapter (MqttIndegoAdapterConfiguration configuration_)
@@ -329,7 +329,7 @@ public class MqttIndegoAdapter {
 
     /**
      * Publishes a single topic on the MQTT broker
-     * 
+     *
      * @param mqttClient the broker connection
      * @param topic the topic to publish (relative to configured topic root)
      * @param data the data to publish
@@ -345,7 +345,7 @@ public class MqttIndegoAdapter {
 
     /**
      * Publishes a single topic on the MQTT broker
-     * 
+     *
      * @param mqttClient the broker connection
      * @param topic the topic to publish (relative to configured topic root)
      * @param data the data to publish
@@ -360,7 +360,7 @@ public class MqttIndegoAdapter {
 
     /**
      * Publishes a single topic on the MQTT broker
-     * 
+     *
      * @param mqttClient the broker connection
      * @param topic the topic to publish (relative to configured topic root)
      * @param data the data to publish
@@ -375,7 +375,7 @@ public class MqttIndegoAdapter {
 
     /**
      * Publishes a single topic on the MQTT broker
-     * 
+     *
      * @param mqttClient the broker connection
      * @param topic the topic to publish (relative to configured topic root)
      * @param data the data to publish
@@ -397,7 +397,7 @@ public class MqttIndegoAdapter {
 
     /**
      * Fetches the last unprocessed command, which was sent to the adapter.
-     * 
+     *
      * @param mqttClient the connection to use
      * @param callback the callback, which processes published messages
      * @return the command to executre (null, if there is none)
@@ -409,7 +409,7 @@ public class MqttIndegoAdapter {
 
     /**
      * This clears the command topic after processing.
-     * 
+     *
      * @param mqttClient the connection to use
      * @throws MqttPersistenceException
      * @throws MqttException
@@ -421,7 +421,7 @@ public class MqttIndegoAdapter {
 
     /**
      * This writes the given device state to the data topics and sets the online state topic to true.
-     * 
+     *
      * @param mqttClient the connection to use
      * @param state the Indego state to write out
      * @throws MqttPersistenceException
@@ -433,20 +433,22 @@ public class MqttIndegoAdapter {
 
         DeviceStatus status = DeviceStatus.decodeStatusCode(state.getState());
 
-        int stateLevel;
-        switch ( status.getAssociatedCommand() ) {
-        case MOW:
-            stateLevel = 2;
-            break;
-        case PAUSE:
-            stateLevel = 1;
-            break;
-        case RETURN:
-            stateLevel = 0;
-            break;
-        default:
-            stateLevel = -1;
-            break;
+        int stateLevel = -1;
+        if (status.getAssociatedCommand() != null){
+          switch ( status.getAssociatedCommand() ) {
+          case MOW:
+              stateLevel = 2;
+              break;
+          case PAUSE:
+              stateLevel = 1;
+              break;
+          case RETURN:
+              stateLevel = 0;
+              break;
+          default:
+              stateLevel = -1;
+              break;
+          }
         }
         if ( state.getError() != 0 ) {
             stateLevel = -1;
@@ -470,7 +472,7 @@ public class MqttIndegoAdapter {
 
     /**
      * This marks the Indego device as offline.
-     * 
+     *
      * @param mqttClient the connection to use
      * @throws MqttPersistenceException
      * @throws MqttException
@@ -496,7 +498,7 @@ public class MqttIndegoAdapter {
 
     /**
      * Connects to the Indego server.
-     * 
+     *
      * @return a connected controller instance; null, if the connection was not successful.
      */
     private IndegoController connectIndego ()
@@ -517,7 +519,7 @@ public class MqttIndegoAdapter {
 
     /**
      * Connects to the MQTT broker by using a given notification callback.
-     * 
+     *
      * @param callback the callback to use
      * @return a connected client instance; null, if the connection was not successful.
      */
@@ -555,7 +557,7 @@ public class MqttIndegoAdapter {
 
     /**
      * Disconnects a connected Indego controller.
-     * 
+     *
      * @param indegoController the controller to disconnect
      */
     private void disconnect (IndegoController indegoController)
@@ -573,7 +575,7 @@ public class MqttIndegoAdapter {
 
     /**
      * Disconnects a connected MQTT client.
-     * 
+     *
      * @param mqttClient the client to disconnect
      */
     private void disconnect (MqttClient mqttClient)

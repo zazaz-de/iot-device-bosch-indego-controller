@@ -30,23 +30,25 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  */
 @JsonPropertyOrder({ "enabled" })
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PredictiveStatus {
-	private boolean enabled;
+public class PredictiveStatus
+{
+    private boolean enabled;
 
-	/**
-	 * @return the enabled
-	 */
-	@JsonGetter("enabled")
-	public boolean isEnabled() {
-		return enabled;
-	}
+    /**
+     * @return the enabled
+     */
+    @JsonGetter("enabled")
+    public boolean isEnabled()
+    {
+        return enabled;
+    }
 
-	/**
-	 * @param enabled
-	 *            the enabled to set
-	 */
-	@JsonSetter("enabled")
-	public void setEnabled(final boolean enabled) {
-		this.enabled = enabled;
-	}
+    /**
+     * @param enabled the enabled to set
+     */
+    @JsonSetter("enabled")
+    public void setEnabled(final boolean enabled)
+    {
+        this.enabled = enabled;
+    }
 }

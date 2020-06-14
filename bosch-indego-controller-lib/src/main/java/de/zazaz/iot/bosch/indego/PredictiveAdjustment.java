@@ -30,24 +30,26 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  */
 @JsonPropertyOrder({ "user_adjustment" })
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PredictiveAdjustment {
-	private int adjustment;
+public class PredictiveAdjustment
+{
+    private int adjustment;
 
-	/**
-	 * @return the adjustment
-	 */
-	@JsonGetter("user_adjustment")
-	public int getAdjustment() {
-		return adjustment;
-	}
+    /**
+     * @return the adjustment
+     */
+    @JsonGetter("user_adjustment")
+    public int getAdjustment()
+    {
+        return adjustment;
+    }
 
-	/**
-	 * @param adjustment
-	 *            the adjustment to set
-	 */
-	@JsonSetter("user_adjustment")
-	public void setAdjustment(final int adjustment) {
-		this.adjustment = adjustment;
-	}
+    /**
+     * @param adjustment the adjustment to set
+     */
+    @JsonSetter("user_adjustment")
+    public void setAdjustment(final int adjustment)
+    {
+        this.adjustment = adjustment;
+    }
 
 }

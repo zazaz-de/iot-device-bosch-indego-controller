@@ -34,33 +34,38 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  */
 @JsonPropertyOrder({ "mow_next" })
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PredictiveCuttingTime {
-	private String nextCutting;
-	private final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+public class PredictiveCuttingTime
+{
+    private String nextCutting;
+    private final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
 
-	/**
-	 * @return the nextCutting
-	 */
-	@JsonGetter("mow_next")
-	public String getNextCutting() {
-		return nextCutting;
-	}
+    /**
+     * @return the nextCutting
+     */
+    @JsonGetter("mow_next")
+    public String getNextCutting()
+    {
+        return nextCutting;
+    }
 
-	/**
-	 * @param nextCutting
-	 *            the nextCutting to set
-	 */
-	@JsonSetter("mow_next")
-	public void setNextCutting(final String nextCutting) {
-		this.nextCutting = nextCutting;
-	}
+    /**
+     * @param nextCutting the nextCutting to set
+     */
+    @JsonSetter("mow_next")
+    public void setNextCutting(final String nextCutting)
+    {
+        this.nextCutting = nextCutting;
+    }
 
-	public Date getNextCuttingAsDate() {
-		try {
-			final Date date = format.parse(nextCutting);
-			return date;
-		} catch (final ParseException e) {
-		}
-		return null;
-	}
+    public Date getNextCuttingAsDate()
+    {
+        try
+        {
+            final Date date = format.parse(nextCutting);
+            return date;
+        } catch (final ParseException e)
+        {
+        }
+        return null;
+    }
 }

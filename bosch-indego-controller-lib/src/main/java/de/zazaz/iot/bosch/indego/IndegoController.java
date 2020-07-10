@@ -17,6 +17,7 @@
 package de.zazaz.iot.bosch.indego;
 
 import java.io.IOException;
+import java.util.Date;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpStatus;
@@ -323,6 +324,84 @@ public class IndegoController {
         catch (IOException ex) {
             throw new IndegoException(ex);
         }
+    }
+    /**
+     * this queries the predictive weather forecast
+     * 
+     * @return the wether forecast
+     * @throws IndegoException in case of any unexpected event
+     */
+    public LocationWeather getWeather() throws IndegoException
+    {
+        synchronized (this)
+        {
+            final LocationWeather weather = doGetRequest("alms/" + session.getAlmSn() + "/predictive/weather",
+                    LocationWeather.class);
+            System.out.println(weather);
+            return weather;
+        }
+    }
+
+    public int getPredictiveAdjustment() throws IndegoException
+    {
+        synchronized (this)
+        {
+            final PredictiveAdjustment adjustment = doGetRequest(
+                    "alms/" + session.getAlmSn() + "/predictive/useradjustment", PredictiveAdjustment.class);
+            return adjustment.getAdjustment();
+        }
+    }
+
+    public void setPredictiveAdjustment(final int adjust) throws IndegoException
+    {
+        synchronized (this)
+        {
+            final PredictiveAdjustment adjustment = new PredictiveAdjustment();
+            adjustment.setAdjustment(adjust);
+            doPutRequest("alms/" + session.getAlmSn() + "/predictive/useradjustment", adjustment, null);
+        }
+    }
+
+    public boolean getPredictiveMoving() throws IndegoException
+    {
+        synchronized (this)
+        {
+            final PredictiveStatus status = doGetRequest("alms/" + session.getAlmSn() + "/predictive",
+                    PredictiveStatus.class);
+            return status.isEnabled();
+        }
+    }
+
+    public void setPredictiveMoving(final boolean enable) throws IndegoException
+    {
+        synchronized (this)
+        {
+            final PredictiveStatus status = new PredictiveStatus();
+            status.setEnabled(enable);
+            doPutRequest("alms/" + session.getAlmSn() + "/predictive", status, null);
+        }
+    }
+
+    public Date getPredictiveNextCutting() throws IndegoException
+    {
+        synchronized (this)
+        {
+            final PredictiveCuttingTime nextCutting = doGetRequest(
+                    "alms/" + session.getAlmSn() + "/predictive/nextcutting", PredictiveCuttingTime.class);
+            return nextCutting.getNextCuttingAsDate();
+        }
+    }
+
+    public DeviceCalendar getPredictiveExclusionTime() throws IndegoException
+    {
+        final DeviceCalendar calendar = doGetRequest("alms/" + session.getAlmSn() + "/predictive/calendar",
+                DeviceCalendar.class);
+        return calendar;
+    }
+
+    public void setPredictiveExclusionTime(final DeviceCalendar calendar) throws IndegoException
+    {
+        doPutRequest("alms/" + session.getAlmSn() + "/predictive/calendar", calendar, null);
     }
 
 }

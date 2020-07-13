@@ -16,6 +16,7 @@
  */
 package de.zazaz.iot.bosch.indego.util;
 
+import java.io.File;
 import java.io.PrintStream;
 import java.util.Date;
 
@@ -91,6 +92,11 @@ public class CmdLineTool {
                 .desc("Queries the calendar of the device") //
                 .build());
         options.addOption(Option //
+                .builder() //
+                .longOpt("download-map") //
+                .desc("Download the current map") //
+                .build());
+        options.addOption(Option //
                 .builder("?") //
                 .longOpt("help") //
                 .desc("Prints this help") //
@@ -122,6 +128,7 @@ public class CmdLineTool {
         String commandStr = cmds.getOptionValue('c');
         boolean doQueryState = cmds.hasOption('q');
         boolean doQueryCalendar = cmds.hasOption("query-calendar");
+        boolean doDownloadMap = cmds.hasOption("download-map");
 
         DeviceCommand command = null;
         if ( commandStr != null ) {
@@ -154,6 +161,11 @@ public class CmdLineTool {
                 System.out.println("Querying device calendar");
                 DeviceCalendar calendar = controller.getCalendar();
                 printCalendar(System.out, calendar);
+            }
+            if ( doDownloadMap ) {
+            	System.out.println("Downloading map");
+            	String filename=cmds.getOptionValue("download-map", "map.svg");
+            	controller.downloadMap(new File(filename));
             }
         }
         catch (IndegoException ex) {

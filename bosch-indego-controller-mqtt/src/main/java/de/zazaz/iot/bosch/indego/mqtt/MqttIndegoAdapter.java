@@ -434,20 +434,25 @@ public class MqttIndegoAdapter {
         DeviceStatus status = DeviceStatus.decodeStatusCode(state.getState());
 
         int stateLevel;
-        switch ( status.getAssociatedCommand() ) {
-        case MOW:
-            stateLevel = 2;
-            break;
-        case PAUSE:
-            stateLevel = 1;
-            break;
-        case RETURN:
-            stateLevel = 0;
-            break;
-        default:
+        if (status.getAssociatedCommand() != null) {
+            switch ( status.getAssociatedCommand() ) {
+                case MOW:
+                    stateLevel = 2;
+                    break;
+                case PAUSE:
+                    stateLevel = 1;
+                    break;
+                case RETURN:
+                    stateLevel = 0;
+                    break;
+                default:
+                    stateLevel = -1;
+                    break;
+            }
+        } else {
             stateLevel = -1;
-            break;
         }
+
         if ( state.getError() != 0 ) {
             stateLevel = -1;
         }

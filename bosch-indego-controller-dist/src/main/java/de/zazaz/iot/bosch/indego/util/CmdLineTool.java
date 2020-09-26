@@ -81,6 +81,11 @@ public class CmdLineTool {
                 .hasArg() //
                 .build());
         options.addOption(Option //
+            .builder("k") //
+            .longOpt("insecure") //
+            .desc("Set to ignore SSL certificate errors") //
+            .build());
+        options.addOption(Option //
                 .builder("q") //
                 .longOpt("query-status") //
                 .desc("Queries the status of the device") //
@@ -123,6 +128,11 @@ public class CmdLineTool {
         boolean doQueryState = cmds.hasOption('q');
         boolean doQueryCalendar = cmds.hasOption("query-calendar");
 
+        boolean ignoreSSL = cmds.hasOption('k');
+        if (ignoreSSL) {
+            SSLFix.execute();
+        }
+
         DeviceCommand command = null;
         if ( commandStr != null ) {
             try {
@@ -133,6 +143,7 @@ public class CmdLineTool {
                 System.exit(1);
             }
         }
+        SSLFix.execute();
 
         IndegoController controller = new IndegoController(baseUrl, username, password);
         try {

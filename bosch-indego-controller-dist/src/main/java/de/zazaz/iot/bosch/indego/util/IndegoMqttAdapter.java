@@ -38,6 +38,7 @@ public class IndegoMqttAdapter {
 
     public static void main (String[] args)
     {
+        SSLFix.execute();
         System.setProperty("log4j.configurationFile", "log4j2-indegoMqttAdapter-normal.xml");
 
         Options options = new Options();
@@ -57,6 +58,11 @@ public class IndegoMqttAdapter {
                 .required() //
                 .hasArg() //
                 .build());
+        options.addOption(Option //
+            .builder("k") //
+            .longOpt("insecure") //
+            .desc("Set to ignore SSL certificate errors") //
+            .build());
         options.addOption(Option //
                 .builder("d") //
                 .longOpt("debug") //
@@ -90,6 +96,11 @@ public class IndegoMqttAdapter {
 
         if ( cmds.hasOption("d") ) {
             System.setProperty("log4j.configurationFile", "log4j2-indegoMqttAdapter-debug.xml");
+        }
+
+        boolean ignoreSSL = cmds.hasOption('k');
+        if (ignoreSSL) {
+            SSLFix.execute();
         }
 
         String configFileName = cmds.getOptionValue('c');

@@ -23,8 +23,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 /**
  * POJO for creating JSON request for authenticating to server
  */
-@JsonPropertyOrder({ "device", "os_type", "os_version", "dvc_manuf", "dvc_type" })
+@JsonPropertyOrder({ "accept_tc_id", "device", "os_type", "os_version", "dvc_manuf", "dvc_type" })
 public class AuthenticationRequest {
+
+    private String accept_tc_id;
 
     private String device;
 
@@ -35,6 +37,18 @@ public class AuthenticationRequest {
     private String deviceManufacturer;
 
     private String deviceType;
+
+    @JsonGetter("accept_tc_id")
+    public String getAcceptTcId ()
+    {
+        return accept_tc_id;
+    }
+
+    @JsonSetter("accept_tc_id")
+    public void setAcceptTcId (String accept_tc_id_)
+    {
+        accept_tc_id = accept_tc_id_;
+    }
 
     @JsonGetter("device")
     public String getDevice ()

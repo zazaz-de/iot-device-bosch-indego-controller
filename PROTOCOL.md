@@ -11,6 +11,7 @@ Authorization: Basic bWF4Lm11c3RlckBhbnl3aGVyZS5jb206c3VwZXJzZWNyZXQ=
 
 Request:
 {
+   "accept_tc_id":"202012",
    "device":"",
    "os_type":"Android",
    "os_version":"4.0",

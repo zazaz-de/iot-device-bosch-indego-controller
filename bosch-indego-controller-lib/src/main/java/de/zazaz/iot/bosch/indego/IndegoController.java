@@ -39,13 +39,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class IndegoController {
 
-	/** the default url which provices the service for controlling the device */ 
+    /** the default url which provices the service for controlling the device */
     public static final String BASE_URL_DEFAULT = "https://api.indego.iot.bosch-si.com/api/v1/";
-    
+
     /** for limiting the amount of status query requests on the server a minimum interval is specified */
     public static final long MIN_STATE_QUERY_INTERVAL_MS = 60 * 1000;
-    
-    /** the url which provices the service for controlling the device */ 
+
+    /** the url which provices the service for controlling the device */
     private final String baseUrl;
 
     /** for mapping between JSON strings and POJOs */
@@ -59,16 +59,16 @@ public class IndegoController {
 
     /** the respons, which was sent by the server after a successfull authentication (contains session, device serial, etc.) */
     private AuthenticationResponse session;
-    
+
     /** the last timestamp, when the device status was queried */
     private long lastStateQueryTs;
-    
+
     /** this stores the result of the last device status query */
     private DeviceStateInformation deviceStateCache;
-    
+
     /**
      * This initializes the controller instance, but does not connect yet.
-     * 
+     *
      * @param baseUrl_ the url which provices the service for controlling the device;
      *      if null, the default base url is used
      * @param username_ the username for authenticating
@@ -82,7 +82,7 @@ public class IndegoController {
 
     /**
      * This initializes the controller instance, but does not connect yet.
-     * 
+     *
      * @param username_ the username for authenticating
      * @param password_ the password for authenticating
      */
@@ -103,7 +103,7 @@ public class IndegoController {
 
     /**
      * This connects to the server and authenticates the session.
-     * 
+     *
      * @throws IndegoAuthenticationException in case of wrong authentication informations
      * @throws IndegoException in case of any unexpected event
      */
@@ -148,25 +148,25 @@ public class IndegoController {
     /**
      * This queries the device state from the server or returns a cached state if the
      * last query was lass than <code>MIN_STATE_QUERY_INTERVAL_MS</code> milliseconds ago.
-     * 
+     *
      * @return the device state
      * @throws IndegoException in case of any unexpected event
      */
     public DeviceStateInformation getState () throws IndegoException
     {
-    	synchronized ( this ) {
-    		if ( deviceStateCache != null 
-    				&& System.currentTimeMillis() - MIN_STATE_QUERY_INTERVAL_MS < lastStateQueryTs ) {
-    			return deviceStateCache;
-    		}
-	        DeviceStateInformation state = doGetRequest("alms/" + session.getAlmSn() + "/state",
-	                DeviceStateInformation.class);
-	        deviceStateCache = state;
-	        lastStateQueryTs = System.currentTimeMillis();
-	        return state;
-    	}
+        synchronized ( this ) {
+            if ( deviceStateCache != null
+                    && System.currentTimeMillis() - MIN_STATE_QUERY_INTERVAL_MS < lastStateQueryTs ) {
+                return deviceStateCache;
+            }
+            DeviceStateInformation state = doGetRequest("alms/" + session.getAlmSn() + "/state",
+                    DeviceStateInformation.class);
+            deviceStateCache = state;
+            lastStateQueryTs = System.currentTimeMillis();
+            return state;
+        }
     }
-    
+
     public DeviceCalendar getCalendar () throws IndegoException
     {
         synchronized ( this ) {
@@ -177,15 +177,15 @@ public class IndegoController {
     }
 
     /**
-     * This sends a command to the Indego device. 
-     * 
+     * This sends a command to the Indego device.
+     *
      * @param command_ the control command to send to the device.
      * @throws IndegoInvalidCommandException if the command was not processed correctly
      * @throws IndegoException in case of any unexpected event
      */
     public void sendCommand (DeviceCommand command_) throws IndegoInvalidCommandException, IndegoException
     {
-    	lastStateQueryTs = 0;
+        lastStateQueryTs = 0;
         SetStateRequest request = new SetStateRequest();
         request.setState(command_.getActionCode());
         doPutRequest("alms/" + session.getAlmSn() + "/state", request, null);
@@ -197,9 +197,9 @@ public class IndegoController {
     private void safeCloseClient ()
     {
         try {
-        	if ( httpClient != null ) {
-        		httpClient.close();
-        	}
+            if ( httpClient != null ) {
+                httpClient.close();
+            }
         }
         catch (IOException ex) {
             // Ignored
@@ -209,7 +209,7 @@ public class IndegoController {
 
     /**
      * This sends an authentication request to the server and unmarshals the result.
-     * 
+     *
      * @return the result of the authentication request, when the authentication was
      * 		successfull.
      * @throws IndegoAuthenticationException in case of wrong authentication informations
@@ -222,6 +222,7 @@ public class IndegoController {
             httpPost.addHeader("Authorization", "Basic " + authentication);
 
             AuthenticationRequest authRequest = new AuthenticationRequest();
+            authRequest.setAcceptTcId("202012");
             authRequest.setDevice("");
             authRequest.setOsType("Android");
             authRequest.setOsVersion("4.0");
@@ -254,13 +255,13 @@ public class IndegoController {
 
     /**
      * This sends a GET request to the server and unmarshals the JSON result.
-     * 
+     *
      * @param urlSuffix the path, to which the request should be sent
      * @param returnType the class to which the JSON result should be mapped; if null,
      * 		no mapping is tried and null is returned.
      * @return the mapped result of the request
      * @throws IndegoException in case of any unexpected event
-    */
+     */
     private <T> T doGetRequest (String urlSuffix, Class<? extends T> returnType) throws IndegoException
     {
         try {
@@ -287,14 +288,14 @@ public class IndegoController {
 
     /**
      * This sends a PUT request to the server and unmarshals the JSON result.
-     * 
+     *
      * @param urlSuffix the path, to which the request should be sent
      * @param request the data, which should be sent to the server (mapped to JSON)
      * @param returnType the class to which the JSON result should be mapped; if null,
      * 		no mapping is tried and null is returned.
      * @return the mapped result of the request
      * @throws IndegoException in case of any unexpected event
-    */
+     */
     private <T> T doPutRequest (String urlSuffix, Object request, Class<? extends T> returnType)
             throws IndegoException
     {
@@ -327,7 +328,7 @@ public class IndegoController {
     }
     /**
      * this queries the predictive weather forecast
-     * 
+     *
      * @return the wether forecast
      * @throws IndegoException in case of any unexpected event
      */
